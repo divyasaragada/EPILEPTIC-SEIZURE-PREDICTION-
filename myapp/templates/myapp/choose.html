@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>   
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <title>HOME PAGE</title>
+    <link rel="stylesheet" type="text/css" href="{% static   'css/style.css' %}">
+</head>
+    <body>
+     <form action="{% url 'choose' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <center>
+      {% include 'myapp/messages.html' %}
+      <h1>SELECT EEG SIGNAL</h1>
+      <br>
+      <input name="filewav" type="file" />
+       <br><br><br>
+      <button class="btn btn-info">CONFIRM</button>
+      <br><br>
+      </form>
+     
+     </body>
+     </html>

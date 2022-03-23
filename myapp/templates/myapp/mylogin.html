@@ -1,62 +1,37 @@
-!DOCTYPE html>   
-<html>   
-<head>  
-<meta name="viewport" content="width=device-width, initial-scale=1">  
-<title> Login Page </title>  
-<style>   
-Body {  
-  font-family: Calibri, Helvetica, sans-serif;  
-  background-color: pink;  
-}  
-button {   
-       background-color: #4CAF50;   
-       width: 100%;  
-        color: orange;   
-        padding: 15px;   
-        margin: 10px 0px;   
-        border: none;   
-        cursor: pointer;   
-         }   
- form {   
-        border: 3px solid #f1f1f1;   
-    }   
- input[type=text], input[type=password] {   
-        width: 100%;   
-        margin: 8px 0;  
-        padding: 12px 20px;   
-        display: inline-block;   
-        border: 2px solid green;   
-        box-sizing: border-box;   
-    }  
- button:hover {   
-        opacity: 0.7;   
-    }   
-  .cancelbtn {   
-        width: auto;   
-        padding: 10px 18px;  
-        margin: 10px 5px;  
-    }   
-        
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>   
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>admin login page</title>
+    <link rel="stylesheet" type="text/css" href="{% static   'css/mystyle.css' %}">
+</head>
+    <body>
+
+      {% include 'myapp/messages.html' %}
+      <center><h3 style="color: white;">USER LOGIN</h3></center>
+    <div class="loginbox">
      
- .container {   
-        padding: 25px;   
-        background-color: lightblue;  
-    }   
-</style>   
-</head>    
-<body>    
-    <center> <h1> Student Login Form </h1> </center>   
-    <form>  
-        <div class="container">   
-            <label>Username : </label>   
-            <input type="text" placeholder="Enter Username" name="username" required>  
-            <label>Password : </label>   
-            <input type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">Login</button>   
-            <input type="checkbox" checked="checked"> Remember me   
-            <button type="button" class="cancelbtn"> Cancel</button>   
-            Forgot <a href="#"> password? </a>   
-        </div>   
-    </form>     
-</body>     
-</html>  
+        <h1>LOGIN HERE</h1>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+           <div class="formbox">
+
+               <label>USERNAME</label> 
+                <input type="text" name="uname" placeholder="Enter Username">
+                
+            </div>
+            <div class="formbox">
+                <label>PASSWORD</label>
+                <input type="password" name="password" placeholder="Enter Password">
+            </div>
+            <input type="submit" name="submit" placeholder="LOGIN">
+           <!--  <center>
+            <a href="a">Forget Password</a>
+            </center> -->
+        </form>
+    </div>
+    </body>
+</html>

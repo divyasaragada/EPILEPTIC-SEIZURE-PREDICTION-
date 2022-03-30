@@ -6,32 +6,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <title>admin login page</title>
-    <link rel="stylesheet" type="text/css" href="{% static   'css/mystyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle1.css' %}">
+
 </head>
-    <body>
-
-      {% include 'myapp/messages.html' %}
-      <center><h3 style="color: white;">USER LOGIN</h3></center>
-    <div class="loginbox">
-     
-        <h1>LOGIN HERE</h1>
-        <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-           <div class="formbox">
-
-               <label>USERNAME</label> 
-                <input type="text" name="uname" placeholder="Enter Username">
-                
-            </div>
-            <div class="formbox">
-                <label>PASSWORD</label>
-                <input type="password" name="password" placeholder="Enter Password">
-            </div>
-            <input type="submit" name="submit" placeholder="LOGIN">
-           <!--  <center>
-            <a href="a">Forget Password</a>
-            </center> -->
-        </form>
-    </div>
-    </body>
+<body>
+    {% include 'myapp/messages.html' %}
+<div class="feedback">
+  <h3 style="text-align: center; color: white"><b>USER REPORT</b></h3>
+ <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <label for="text"><b>Name</b></label>
+    <p><input placeholder="Your name.." name="name"></p>
+<br>
+    <label ><b>Phone Number</b></label>
+    <p><input name="phone" placeholder="enter phone number" size="10"/></p>
+<br>
+    <label ><b>Upload File</b></label><br>
+    <p><input name="filewav" type="file" /></p>
+    <br>
+    <br><br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-success" type="submit">RESET</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary" type="submit">SUBMIT</button>
+  </form>
+</div>
+</body>
 </html>

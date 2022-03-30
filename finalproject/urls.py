@@ -20,6 +20,14 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',views.login,name='login'),
+    path('fivebands/',views.fivebands,name='fivebands'),
     path('start/',views.start,name='start'),
     path('choose/',views.choose,name='choose'),
+
+    path('alpha/',views.alpha,name='alpha'),
+    path('theta/',views.theta,name='theta'),
+
+    path('features/',views.features,name='features'),
+    path('classify/<str:jm>/',views.classify,name='classify'),
+
    ]

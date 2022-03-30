@@ -76,9 +76,13 @@ WSGI_APPLICATION = 'finalproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+       'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'Epilepsy', # Database name
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        }
 }
 
 
@@ -115,7 +119,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_debug')
 STATIC_URL = 'static/'
 
 # Default primary key field type

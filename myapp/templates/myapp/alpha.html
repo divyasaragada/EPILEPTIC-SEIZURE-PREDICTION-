@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>HOME PAGE</title>
+    <link rel="stylesheet" type="text/css" href="{% static   'css/style.css' %}">
+</head>
+    <body>
+     <br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'fivebands' %}"> <button class="btn btn-primary btn-sm">Go back</button></a><br>
+      <center>
+      {% include 'myapp/messages.html' %}
+      <h1>SELECT EEG apha SIGNAL</h1>
+      <br>
+      
+      
+      <image src="data:image/png;base64,{{ chart}}"></image>
+     
+     </body>
+     </html>

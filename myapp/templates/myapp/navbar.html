@@ -1,58 +1,59 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-textarea{
-  width: 100%;
-  padding: 60px;
-  margin-top: 5px;
-  margin-bottom: 5px;}
-
-label{content:attr(type);display:block;margin:10px 0 0;font-size:14px; color: white;}
-p,input{width:100%;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:1px solid #bebed2}
-.feedback{
-  background-color: #0d2c4ae3;
-  width: 40%;
-  border: 3px solid gray ;
-  padding: 10px;
-  position: absolute;
-  right: 0;
-  margin: 30px;
-}
-body {
-  background-image: url("https://wallpaperaccess.com/full/2089806.jpg");
-
-  min-height: 600px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+ul {
+  box-shadow: 20px 20px 50px #bebed2;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: white;
+  height: 100%; 
+  position: fixed; 
+  overflow: auto; 
 }
 
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-bottom:1px solid #bebed2;
+}
+
+li a.active {
+  background-color: #8B008B;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #8B008B;
+  color: white;
+}
 </style>
 </head>
 <body>
-<div class="feedback">
-  <h3 style="text-align: center; color: white"><b>USER REPORT</b></h3>
-  <form action="/action_page.php">
-    <label for="text"><b>Name</b></label>
-    <p><input placeholder="Your name.."></p>
-    <label for="text"><b>Email Id</b></label>
-    <p><input placeholder="username@gmail.com..."></p>
-    <label for="Number"><b>Phone Number</b></label>
-    <p><input name="phone" size="10"/></p>
-    <label for="Number"><b>Upload Report</b></label><br>
-    <p><input style="color: gray" type="file" id="myFile" name="filename"></p>
-    <button class="btn btn-danger" type="submit">RESET</button>
-    <br>
-    <label for="subject"><b>Doctors Remarks</b></label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
-    <button class="btn btn-primary btn-success btn-block" type="submit">SUBMIT</button>
-  </form>
-</div>
+<ul>
+  <li><a class="active" href="#name"><h1><i class="fa fa-dashboard">Dashboard</i></h1></a></li><br>
+
+
+  <li><a href="{% url 'classify' 'rf' %}"><i class="fa fa-heartbeat"> Random Forest Classifier</i></a></li><br>
+  <li><a href="{% url 'classify' 'xtrees' %}"><i class="fa fa-heartbeat"> XTrees Classifier </i></a></li><br>
+  <li><a href="{% url 'classify' 'xgboost' %}"><i class="fa fa-heartbeat"> XGBOOST Classifier</i></a></li><br>
+  <li><a href="{% url 'classify' 'cnn' %}"><i class="fa fa-heartbeat"> CNN Classifier</i></a></li><br>
+  <li><a href="#"><i class="fa fa-heartbeat"> GaussianNB Classifier</i></a></li><br>
+</ul>
+<section>
+    {% include 'myapp/messages.html' %}
+
+     {% block content %}
+     
+     {% endblock content %}
+  </section>
+  
 </body>
 </html>

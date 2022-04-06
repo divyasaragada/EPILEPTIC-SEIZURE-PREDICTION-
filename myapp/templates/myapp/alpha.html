@@ -7,11 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{% static   'css/style.css' %}">
 </head>
     <body>
+      {% include 'myapp/messages.html' %}
      <br>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'fivebands' %}"> <button class="btn btn-primary btn-sm">Go back</button></a><br>
       <center>
-      {% include 'myapp/messages.html' %}
-      <h1>SELECT EEG apha SIGNAL</h1>
+      
+      <h1>SELECT EEG {{ name }} SIGNAL</h1>
       <br>
       
       

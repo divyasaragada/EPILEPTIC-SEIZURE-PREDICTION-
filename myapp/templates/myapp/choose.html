@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static   'css/style.css' %}">
 </head>
     <body>
+        {% include 'myapp/messages.html' %}
      <!--<form action="{% url 'choose' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
       <center>
@@ -21,10 +22,12 @@
       <button class="btn btn-info">CONFIRM</button>
       <br><br>
       </form>-->
-      <P>your file</P>
+      <center>
+      <P>FILE:</P>
       <p>{{ data1 }}</p>
       
       <image src="data:image/png;base64,{{ chart}}"></image>
+      </center>
      
      </body>
      </html>

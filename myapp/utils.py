@@ -35,11 +35,19 @@ def get_plot(data):
 	graph=get_graph()
 	return graph
 
-def get_alpha_plot(data):
-	low_freq, high_freq = 8.0, 14.0
+def get_beta_plot(data):
+	low_freq, high_freq = 12.0, 30.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
 	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=5)
+         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	graph=get_graph()
+	return graph
+
+def get_alpha_plot(data):
+	low_freq, high_freq = 8.0, 12.0
+	data = data.filter(low_freq, high_freq, n_jobs=4)
+	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
 	graph=get_graph()
 	return graph
 
@@ -47,7 +55,16 @@ def get_theta_plot(data):
 	low_freq, high_freq = 4.0, 8.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
 	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=5)
+         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	graph=get_graph()
+	return graph
+
+
+def get_delta_plot(data):
+	low_freq, high_freq = 0.5, 4.0
+	data = data.filter(low_freq, high_freq, n_jobs=4)
+	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
 	graph=get_graph()
 	return graph
 

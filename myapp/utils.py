@@ -23,8 +23,8 @@ def get_plot(data):
 	#data=mne.io.read_raw_edf('C:\\Users\\DIVYA\\Desktop\\MAJOR PROJECT\\FINALDATASET\\chb03_01.edf',preload=True)
 	#data.plot(duration=50)
 	#or
-	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=5)
+	data.plot(n_channels=23, scalings={"eeg":75e-6},title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=15.0,start=5)
 	#plt.switch_backend('AGG')
 	#plt.title('sales of items')
 	#plt.plot(x,y)
@@ -38,24 +38,24 @@ def get_plot(data):
 def get_beta_plot(data):
 	low_freq, high_freq = 12.0, 30.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
-	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	data.plot(n_channels=23, scalings={"eeg":75e-6},title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=15.0,start=10)
 	graph=get_graph()
 	return graph
 
 def get_alpha_plot(data):
 	low_freq, high_freq = 8.0, 12.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
-	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	data.plot(n_channels=23, scalings={"eeg":75e-6},title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=15.0,start=10)
 	graph=get_graph()
 	return graph
 
 def get_theta_plot(data):
 	low_freq, high_freq = 4.0, 8.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
-	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	data.plot(n_channels=23,scalings={"eeg":75e-6}, title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=15.0,start=10)
 	graph=get_graph()
 	return graph
 
@@ -63,8 +63,8 @@ def get_theta_plot(data):
 def get_delta_plot(data):
 	low_freq, high_freq = 0.5, 4.0
 	data = data.filter(low_freq, high_freq, n_jobs=4)
-	data.plot(n_channels=23, title='Auto-scaled Data from arrays',
-         show=True,color=dict(eeg='darkblue'), duration=5.0,start=10)
+	data.plot(n_channels=23, scalings={"eeg":75e-6},title='Auto-scaled Data from arrays',
+         show=True,color=dict(eeg='darkblue'), duration=15.0,start=10)
 	graph=get_graph()
 	return graph
 

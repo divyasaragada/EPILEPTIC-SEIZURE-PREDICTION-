@@ -7,25 +7,34 @@
 	<!----bootrap link-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<title>Display Frequency bands</title>
+	 <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
+ 
 </head>
 
-<body style="margin:2%">
+<body>
 	  {% include 'myapp/messages.html' %}
 
-	<br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'start' %}"> <button class="btn btn-primary btn-sm">Go back</button></a><br>
-     <br><br>
+	  <div class="menubar" id="nav1">  
+   <a href="{% url 'start' %}">go back</a>
+   <p>EPILEPTIC SEIZURE PREDICTION SYSTEM</p>
+        
+</div>
+     <br>
      <center>
+
+     	<br><br><br>
 	<a href="{% url 'alpha' %}" ><button class="btn btn-light btn-lg" style="width:500px">ALPHA</button></a>
 	<br><br>
 
-	<a href="{% url 'theta' %}"> <button class="btn btn-light btn-lg" style="width:500px">THETA</button></a>
+	<a href="{% url 'beta' %}" ><button class="btn btn-light btn-lg" style="width:500px">BETA</button></a><br><br>
+
+
+	<a href="{% url 'theta' %}"> <button class="btn btn-dark btn-lg" style="width:500px">THETA</button></a>
 	<br><br>
 
 	<a href="{% url 'delta' %}"> <button class="btn btn-dark btn-lg" style="width:500px">DELTA</button></a>
 	<br><br>
 
-	<a href="{% url 'beta' %}" ><button class="btn btn-dark btn-lg" style="width:500px">BETA</button></a>
     </center>
 	<br><br><br>
 

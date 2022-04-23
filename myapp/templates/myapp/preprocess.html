@@ -6,14 +6,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static   'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
 </head>
     <body>
         {% include 'myapp/messages.html' %}
+        <div class="menubar" id="nav1">
+    
+   <a href="{% url 'start' %}">go back</a>
+<p>EPILEPTIC SEIZURE PREDICTION SYSTEM</p>
+        
+
+</div>
     	<br>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'fivebands' %}"> <button class="btn btn-primary btn-sm">Go back</button></a><br>
      <center>
-      <P>Preprocessed file:</P>
+      <h2>PRE-PROCESSED FILE</h2>
       <p>{{ data1 }}</p>
       
       <image src="data:image/png;base64,{{ chart}}"></image>

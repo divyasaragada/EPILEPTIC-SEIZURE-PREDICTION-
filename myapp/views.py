@@ -7,7 +7,7 @@ import matplotlib
 from .utils import get_plot,get_beta_plot,get_alpha_plot,get_theta_plot,get_delta_plot,read
 from myapp.models import user
 from myapp import pyeeg
-import mne
+import mne,keras
 
 import pandas as pd
 #from .pyeeg import *
@@ -97,7 +97,7 @@ def beta(req):
 		fi=user.objects.last()
 		data=read(fi.media)
 		chart=get_beta_plot(data)
-		return render(req,'myapp/fivebands.html',{'chart':chart,'name':'beta'})
+		return render(req,'myapp/alpha.html',{'chart':chart,'name':'beta'})
 	except Exception:
 		messages.warning(req,'Error in displaying!!!.......')
 		return render(req,'myapp/fivebands.html')
@@ -243,7 +243,7 @@ def features(req):
 		res.to_csv(os.path.join('myapp/static/upload/', 'extracted_data' + '.csv'), encoding='utf-8', index=False)
 		print("COMPLETED PROCESSING FILE")
 
-		res=res.iloc[0:5,:]
+		#res=res.iloc[0:5,:]
 		#dfobject = res.to_html()
 
 
@@ -264,8 +264,6 @@ def classify(req,jm):
 		import pickle
 		import numpy as np
 
-		
-		
 		data=pd.read_csv('myapp/static/upload/extracted_data.csv')
 		data=data.iloc[:,:162]
 
@@ -274,9 +272,10 @@ def classify(req,jm):
 		elif jm=='xgboost':
 			model = pickle.load(open('xgbcmodel.pkl', 'rb'))
 		elif jm=='cnn':
-			model = pickle.load(open('randomforestmodel.pkl', 'rb'))
+			model = keras.models.load_model('cnn_model.pkl','rb')	
 		elif jm=='rf':
 			model = pickle.load(open('randomforestmodel.pkl', 'rb'))
+
 		a=model.predict(data)
 		pred=np.max(a)
 
@@ -336,8 +335,6 @@ def result(req):
 def delete(req):
 
 	try:
-
-
 		d=user.objects.all()
 		d.delete()
 		messages.success(req,"EXISTING FILES DELETED SUCCESSFULLY..")	

@@ -10,21 +10,28 @@
    
 	{% endblock %}
   
-  <link rel="stylesheet" type="text/css" href="{% static   'css/sheet1.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
  
 </head>
 <body >
 	{% include 'myapp/messages.html' %}
+
+    <div class="menubar" id="nav1">
+    
+   <a href="{% url 'start' %}">go back</a>
+<p>EPILEPTIC SEIZURE PREDICTION SYSTEM</p>
+        
+
+</div>
 	
 	<br>
-     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="{% url 'start' %}"> <button class="btn btn-success btn-sm">Go back</button></a>
 	<center>
   <!--<input style="visibility: hidden;" type="file" id="fileUpload" value="extracted_data.csv"/>-->
 
   
    <br>
 
-  <h2>  EXTRACTED FEATURES SUCCESSFULLY</h2>
+  <h2>  FEATURES EXTRACTED SUCCESSFULLY</h2>
 
 <br>
 <h3>The file is divided into {{ sections }} sections<h3>

@@ -1,59 +1,45 @@
 
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<style>
-ul {
-  box-shadow: 20px 20px 50px #bebed2;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: white;
-  height: 100%; 
-  position: fixed; 
-  overflow: auto; 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <style>
+    body{
+  font-family: 'Source Serif Pro', serif;
 }
 
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-bottom:1px solid #bebed2;
-}
-
-li a.active {
-  background-color: #8B008B;
-  color: white;
-}
-
-li a:hover:not(.active) {
-  background-color: #8B008B;
-  color: white;
-}
 </style>
 </head>
 <body>
-<ul>
-  <li><a class="active" href="#name"><h1><i class="fa fa-dashboard">Dashboard</i></h1></a></li><br>
+<center>
+  <br>
+  <div>
 
 
-  <li><a href="{% url 'classify' 'rf' %}"><i class="fa fa-heartbeat"> Random Forest Classifier</i></a></li><br>
-  <li><a href="{% url 'classify' 'xtrees' %}"><i class="fa fa-heartbeat"> XTrees Classifier </i></a></li><br>
-  <li><a href="{% url 'classify' 'xgboost' %}"><i class="fa fa-heartbeat"> XGBOOST Classifier</i></a></li><br>
-  <li><a href="{% url 'classify' 'cnn' %}"><i class="fa fa-heartbeat"> CNN Classifier</i></a></li><br>
-  <li><a href="#"><i class="fa fa-heartbeat"> GaussianNB Classifier</i></a></li><br>
-</ul>
-<section>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><h2>CLASSIFIER</h2></a></li><br>
+  <a href="{% url 'classify' 'rf' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> Random Forest Classifier</i></button></a><br><br>
+
+  <a href="{% url 'classify' 'xtrees' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> XTrees Classifier </i></button></a><br><br>
+
+  <a href="{% url 'classify' 'xgboost' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> XGBOOST Classifier</i></button></a><br><br>
+
+    <a href="{% url 'classify' 'cnn' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> CNN Classifier</i></button></a><br><br>
+ 
+</div>
+</center>
+
+
     {% include 'myapp/messages.html' %}
 
      {% block content %}
      
      {% endblock content %}
-  </section>
+ 
   
 </body>
+
 </html>

@@ -3,24 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+ 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-   <style>
-    body{
-  font-family: 'Source Serif Pro', serif;
-}
-
-</style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style11.css' %}">
 </head>
 <body>
+  {% include 'myapp/messages.html' %}
+
+   <div class="menubar" id="nav1">
+    
+   <a href="{% url 'start' %}">go back</a>
+<p>EEG CLASSIFIFCATION</p>
+        
+
+</div>
 <center>
   <br>
-  <div>
+  <div align= "center">
 
-
-  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><h2>CLASSIFIER</h2></a></li><br>
+  
   <a href="{% url 'classify' 'rf' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> Random Forest Classifier</i></button></a><br><br>
 
   <a href="{% url 'classify' 'xtrees' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> XTrees Classifier </i></button></a><br><br>
@@ -29,12 +32,12 @@
 
     <a href="{% url 'classify' 'cnn' %}"><button class="btn btn-light btn-lg" style="width:500px"><i class="fa fa-heartbeat"> CNN Classifier</i></button></a><br><br>
  
+ <br>
 </div>
 </center>
 
 
-    {% include 'myapp/messages.html' %}
-
+    
      {% block content %}
      
      {% endblock content %}

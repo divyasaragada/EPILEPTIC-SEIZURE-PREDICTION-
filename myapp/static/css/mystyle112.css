@@ -1,0 +1,56 @@
+
+body
+ {font-family: Arial, Helvetica, sans-serif;}
+
+* {
+	box-sizing: border-box;
+}
+
+label
+{
+	text-align: left;
+	content:attr(type);
+	display:block;
+    color: white;
+	margin:10px 0 0;
+	font-size:18px;
+	}
+
+::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+p,input
+{
+
+	width:100%;
+	box-sizing:border-box;
+	background:none;
+	outline:none;
+	resize:none;
+	border:0;
+	color: white;
+	font-family:'Montserrat',sans-serif;
+	transition:all .3s;
+	border-bottom:1px solid #bebed2
+}
+.feedback{
+  background-color: rgba(0,0,0,0.5);
+  width: 32%;
+  border: 3px solid gray ;
+  padding:10px;
+  right: 0;
+  margin: 30px;
+  margin-top: 80px;
+ margin-right: 80px;
+  height: 78%;
+}
+body {
+  background: url("https://image.shutterstock.com/image-vector/vector-blue-brain-processes-technology-260nw-263520563.jpg");
+  min-height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+

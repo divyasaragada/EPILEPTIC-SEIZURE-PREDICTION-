@@ -258,49 +258,55 @@ def features(req):
 def navbar(req):
 	return render(req,'myapp/navbar.html')
 def classify(req,jm):
-	try:
+	# try:
 	
-		import pandas as pd
-		import pickle
-		import numpy as np
+	import pandas as pd
+	import pickle
+	import numpy as np
 
-		data=pd.read_csv('myapp/static/upload/extracted_data.csv')
-		data=data.iloc[:,:162]
+	data=pd.read_csv('myapp/static/upload/extracted_data.csv')
+	data=data.iloc[:,:162]
 
-		if jm=='xtrees':
-			model = pickle.load(open('etcmodel.pkl', 'rb'))
-		elif jm=='xgboost':
-			model = pickle.load(open('xgbcmodel.pkl', 'rb'))
-		elif jm=='cnn':
-			model = keras.models.load_model('cnn_model.pkl','rb')	
-		elif jm=='rf':
-			model = pickle.load(open('randomforestmodel.pkl', 'rb'))
-
+	if jm=='xtrees':
+		model = pickle.load(open('etcmodel.pkl', 'rb'))
 		a=model.predict(data)
-		pred=np.max(a)
+
+	elif jm=='xgboost':
+		model = pickle.load(open('xgbcmodel.pkl', 'rb'))
+		a=model.predict(data)
+
+	elif jm=='cnn':
+		new_model = keras.models.load_model('cnn_model.h5')
+		d = np.expand_dims(data, axis=2)
+		a = np.argmax(new_model.predict(d),axis=1)
+		
+	elif jm=='rf':
+		model = pickle.load(open('randomforestmodel.pkl', 'rb'))
+		a=model.predict(data)
+
+	
+	pred=np.max(a)
+	res=''
+	if pred==1:
+		res='ictal'
+	elif pred==2:
+		res='pre-ictal'
+	elif pred==0:
+		res='normal'
+
+	d={'1':'ictal','2':'pre-ictal','0':'normal'}
+
+	a=[str(i) for i in a]
+	for i in range(0,len(a)):
+		a[i]=str(d[a[i]])
+
+	print(a)
 
 
-		res=''
-		if pred==1:
-			res='ictal'
-		elif pred==2:
-			res='pre-ictal'
-		elif pred==0:
-			res='normal'
-
-		d={'1':'ictal','2':'pre-ictal','0':'normal'}
-
-		a=[str(i) for i in a]
-		for i in range(0,len(a)):
-			a[i]=str(d[a[i]])
-
-		print(a)
-
-
-		return render(req,'myapp/classify.html',{'res':res,'arrlen':len(a)})
-	except Exception:
-		messages.warning(req,'Classification error!!!.......')
-		return render(req,'myapp/navbar.html')
+	return render(req,'myapp/classify.html',{'res':res,'arrlen':len(a)})
+# except Exception:
+		# messages.warning(req,'Classification error!!!.......')
+		# return render(req,'myapp/navbar.html')
 
 
 

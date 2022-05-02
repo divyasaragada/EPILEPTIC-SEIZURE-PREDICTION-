@@ -11,7 +11,12 @@
 	{% endblock %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
- 
+ <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
 </head>
 <body >
 
@@ -42,7 +47,7 @@
 	
 	<a href="{% url 'navbar' %}" ><button class="btn btn-dark btn-lg" style="width:500px" >CLASSIFY</button></a><br><br>
 	
-	<a href="{% url 'result' %}"><button class="btn btn-dark btn-lg" style="width:500px">VIEW RESULTS</button></a><br><br>
+	<a href="{% url 'result' %}"><button class="btn btn-dark btn-lg" style="width:500px">VIEW PERFORMANCE</button></a><br><br>
 
 	<a href="{% url 'delete' %}" ><button class="btn btn-dark btn-lg" style="width:500px" >CLEAR FILES </button></a><br><br>
 

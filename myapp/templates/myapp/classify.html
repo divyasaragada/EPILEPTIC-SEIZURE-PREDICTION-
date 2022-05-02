@@ -10,18 +10,29 @@
   
     <div class="col-md-6">
      <div class="card" style="width: 100%;">
-    <div class="card-header text-center text-primary" ><h3>RESULT:</h3></div>
+    <div class="card-header text-center text-primary" ><h3>Result using {{ model }} model:</h3></div>
     <br>
-   <h1>Person is in {{ res }} State</h1>
+   
+
+         {% for x,y in count %}
+                <h3>{{ x }} :  {{ y }} Sections</h3>
+         {% endfor %}
+<center>
+<div style="border: 3px solid black;width: 85%; ">
+<h3>EEG is {{ classify }}</h3>
+</div>
+</center>
+
    <br>
 </div>
 <div class="card-footer text-center">
-	 <a href="{% url 'start' %}"> <button class="btn btn-success btn-sm">Go back</button></a>
+	 
 	</div>
 </form>
 </div>
 </div>
 </div>
 </center>
+    </body>
        
 {% endblock content %}

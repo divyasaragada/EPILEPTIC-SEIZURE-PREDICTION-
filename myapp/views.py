@@ -4,7 +4,7 @@ from django.contrib import messages
 from finalproject import settings
 import matplotlib.pyplot as plt
 import matplotlib
-from .utils import get_plot,get_beta_plot,get_alpha_plot,get_theta_plot,get_delta_plot,read
+from .utils import get_plot,get_beta_plot,get_alpha_plot,get_theta_plot,get_delta_plot,read,get_acc
 from myapp.models import user
 from myapp import pyeeg
 import mne,keras
@@ -16,10 +16,11 @@ import pandas as pd
 def login(req):
 	try:
 		if req.method=="POST":
+
 			file=req.FILES['filewav']
 			name=req.POST['name']
-			phone=req.POST['phone']
-			user.objects.create(name=name,phone=phone,media=file)  
+			user.objects.create(name=name,media=file) 
+
 			return render(req,'myapp/eegstart.html')
 	except Exception:
 			messages.warning(req,'Please enter valid details!!!.......')
@@ -116,17 +117,6 @@ def preprocess(req):
 		return render(req,'myapp/eegstart.html')
 
 
-def feature(req):
-	lst = ['Geeks', 'For', 'Geeks', 'is', 'portal', 'for', 'Geeks']
-	lst= pd.DataFrame(lst)
-	lst=lst.to_html()
-
-	text_file = open("myapp/features.html", "w")
-	text_file.write(lst)
-	text_file.close()
-	#return HttpResponse(req,lst)
-
-	return render(req,'myapp/features.html',{'DataFrame':lst})
 
 def features(req):
 	try:
@@ -257,6 +247,7 @@ def features(req):
 
 def navbar(req):
 	return render(req,'myapp/navbar.html')
+
 def classify(req,jm):
 	# try:
 	
@@ -265,36 +256,44 @@ def classify(req,jm):
 	import numpy as np
 
 	data=pd.read_csv('myapp/static/upload/extracted_data.csv')
+	#x.drop(['start_time'], axis=1, inplace=True)
+	#x.drop(['seizure'], axis=1, inplace=True)
+
 	data=data.iloc[:,:162]
 
 	if jm=='xtrees':
+		name= 'xtrees'
 		model = pickle.load(open('etcmodel.pkl', 'rb'))
 		a=model.predict(data)
 
 	elif jm=='xgboost':
+		name= 'xgboost'
 		model = pickle.load(open('xgbcmodel.pkl', 'rb'))
 		a=model.predict(data)
 
 	elif jm=='cnn':
+		name= 'CNN'
 		new_model = keras.models.load_model('cnn_model.h5')
 		d = np.expand_dims(data, axis=2)
 		a = np.argmax(new_model.predict(d),axis=1)
 		
 	elif jm=='rf':
+		name= 'Random forest'
 		model = pickle.load(open('randomforestmodel.pkl', 'rb'))
 		a=model.predict(data)
 
 	
 	pred=np.max(a)
+
 	res=''
 	if pred==1:
-		res='ictal'
+		res='Ictal'
 	elif pred==2:
 		res='pre-ictal'
 	elif pred==0:
 		res='normal'
 
-	d={'1':'ictal','2':'pre-ictal','0':'normal'}
+	d={'1':'Ictal','2':'pre-ictal','0':'normal'}
 
 	a=[str(i) for i in a]
 	for i in range(0,len(a)):
@@ -302,8 +301,30 @@ def classify(req,jm):
 
 	print(a)
 
+	l=[]
+	l1=[]
+	a1=['Ictal','pre-ictal','normal']
+	for i in a1:
+		l.append(a.count(i))
+		
 
-	return render(req,'myapp/classify.html',{'res':res,'arrlen':len(a)})
+	print(l)
+
+
+	def mode(List):
+		return max(set(List), key = List.count)
+ 
+	print(mode(a))
+
+	c=zip(a1,l)
+
+	if l[0]>1 or l[1]>1: #ictal and pre-ictal states are exists in more than 1 section
+
+		dis='Abnormal, Seizure signals are observed'
+	else:
+		dis='Normal'
+
+	return render(req,'myapp/classify.html',{'res':res,'model':name,'count':c,'classify':dis})
 # except Exception:
 		# messages.warning(req,'Classification error!!!.......')
 		# return render(req,'myapp/navbar.html')
@@ -311,32 +332,53 @@ def classify(req,jm):
 
 
 def result(req):
-	try:
-		import pandas as pd
-		import pickle
-		import numpy as np
+	import pandas as pd
+	import pickle
+	import numpy as np
 
-		
-		
-		data=pd.read_csv('myapp/static/upload/extracted_data.csv')
-		data=data.iloc[:,:162]
-		model = pickle.load(open('etcmodel.pkl', 'rb'))
-		pred=np.max(model.predict(data))
+	data=pd.read_csv('myapp/static/upload/extracted_data.csv')
+	#x.drop(['start_time'], axis=1, inplace=True)
+	#x.drop(['seizure'], axis=1, inplace=True)
+
+	data=data.iloc[:,:162]
+
+	model = pickle.load(open('xgbcmodel.pkl', 'rb'))
+	a=model.predict(data)
+
+	d={'1':'Ictal','2':'pre-ictal','0':'normal'}
+
+	a=[str(i) for i in a]
+	for i in range(0,len(a)):
+		a[i]=str(d[a[i]])
+
+	print(a)
+
+	l=[]
+	
+	a1=['Ictal','pre-ictal','normal']
+	for i in a1:
+		l.append(a.count(i))
+	print(l)
+
+	c=zip(a1,l)
+
+	if l[0]>1 or l[1]>1: #ictal and pre-ictal states are exists in more than 1 section
+
+		dis='Abnormal, Seizure signals are observed'
+	else:
+		dis='Normal'
 
 
-		res=''
-		if pred==1:
-			res='ictal'
-		elif pred==2:
-			res='pre-ictal'
-		elif pred==0:
-			res='normal'
+	chart=get_acc()
+
+	return render(req,'myapp/result.html',{'count':c,'classify':dis,'chart':chart})
+# except Exception:
+		# messages.warning(req,'Classification error!!!.......')
+		# return render(req,'myapp/navbar.html')
 
 
-		return render(req,'myapp/result.html',{'res':res})
-	except Exception:
-		messages.warning(req,'Error in displaying!!!.......')
-		return render(req,'myapp/eegstart.html')
+
+	
 
 def delete(req):
 

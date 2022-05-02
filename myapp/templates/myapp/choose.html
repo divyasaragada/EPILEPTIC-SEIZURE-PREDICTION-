@@ -8,20 +8,18 @@
 
     <title>HOME PAGE</title>
     <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
+
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+        
+    </script>
 </head>
     <body>
         {% include 'myapp/messages.html' %}
-     <!--<form action="{% url 'choose' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-      <center>
-      {% include 'myapp/messages.html' %}
-      <h1>SELECT EEG SIGNAL</h1>
-      <br>
-      <input name="filewav" type="file" />
-       <br><br><br>
-      <button class="btn btn-info">CONFIRM</button>
-      <br><br>
-      </form>-->
+     
 
       <div class="menubar" id="nav1">
     

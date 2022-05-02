@@ -5,13 +5,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>HOME PAGE</title>
     <link rel="stylesheet" type="text/css" href="{% static   'css/style11.css' %}">
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+        
+    </script>
 </head>
     <body>
  
   {% include 'myapp/messages.html' %}
   <div class="menubar" id="nav1">
     
-   <a href="{% url 'login' %}">HOME</a>
+   <a href="{% url 'start' %}">back</a>
 <p>EPILEPTIC SEIZURE PREDICTION SYSTEM</p>
         
 
@@ -21,29 +28,38 @@
 
 <center>
   <br><br>
-  <div  class="row">
-
-    <div class="col-sm-3"></div>
-  
-    <div class="col-md-6">
-     <div class="card" style="width: 100%;">
+  <div class="row">
+ <div class="col-sm-1">
+ </div><br>
+    <div class="col-sm-5">
+           <div class="card" style="width: 100%;">
     <div class="card-header text-center text-primary" ><h3>RESULT:</h3></div>
     <br>
-   <h1>Person is in {{ res }} State</h1>
+<center>
+<div style="border: 3px solid black;width: 85%; ">
+<h3>EEG is {{ classify }}</h3>
+</div>
+</center>
+
+        <h3></h3>
+
    <br>
 </div>
 <div class="card-footer text-center">
-   <a href="{% url 'start' %}"> <button class="btn btn-success btn-sm">Go back</button></a>
   </div>
+  
+      
+    </div>
+  
+    <div class="col-md-6">
+
+     <img src="data:image/png;base64,{{ chart }}" alt="" width=500 height=auto />
 </form>
 </div>
 </div>
 </div>
 </center>
     
-    
-    
-   
-     
+      
      </body>
      </html>

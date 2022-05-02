@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle112.css' %}">
+
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+        
+    </script>
 </head>
 
 <body>
@@ -16,23 +24,20 @@
         <br>
         <h3 style="text-align: center; color: white"><b>EPILEPTIC SEIZURE PREDICTION SYSTEM</b></h3>
 <div class="feedback">
-  <h3 style="text-align: center; color: white"><b>LOGIN</b></h3>
+  <h3 style="text-align: center; color: white"><b>SUBMIT YOUR   EEG FILE</b></h3>
   
  <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
     <label ><b>Name</b></label>
-    <p><input placeholder="Your name.." name="name"></p>
-<br>
-    <label ><b>Phone Number</b></label>
-    <p><input name="phone" placeholder="enter phone number" size="10"/></p>
+    <p><input placeholder="Your name.." name="name" required></p>
 <br>
     <label ><b>Upload File</b></label><br>
     <p><input name="filewav" type="file" /></p>
     <br>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
- <button class="btn btn-primary " type="reset">RESET</button>
+ <button class="btn btn-primary" type="reset">RESET</button>
    
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-primary" type="submit">SUBMIT</button>

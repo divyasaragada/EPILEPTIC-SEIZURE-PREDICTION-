@@ -2,7 +2,10 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 import mne
+import matplotlib
+matplotlib.use("Agg")
 def get_graph():
+
 	buffer=BytesIO()
 	plt.savefig(buffer,format='png')
 	buffer.seek(0)
@@ -11,6 +14,7 @@ def get_graph():
 	graph=graph.decode('utf-8')
 	buffer.close()
 	return graph
+
 def read(file):
 	#data=mne.io.read_raw_edf('C:/Users/DIVYA/DESKTOP/MAJOR PROJECT/finalproject/'+file.name,preload=True)
 	import mne
@@ -68,6 +72,31 @@ def get_delta_plot(data):
 	graph=get_graph()
 	return graph
 
+
+def get_acc():
+
+	#plt.figure(figsize = (8,7))  
+
+	models = ['Random Forest','XTrees','Xgboost','CNN']
+	total = [96,96.6,97,95]
+	# Passing the parameters to the bar function
+	g=plt.bar(models, total, width= 0.4, align='center',color='cyan', edgecolor = 'red')
+	
+	plt.xticks(fontsize=16)
+	plt.title("Bar plot representing the accuracy of all the models",pad=20,fontname="Times New Roman",fontsize=22)
+	plt.xlabel('ALGORITHM',fontname="Times New Roman")
+	plt.ylabel('ACCURACY',fontname="Times New Roman")
+
+
+	for p in g:
+	    width = p.get_width()
+	    height = p.get_height()
+	    x, y = p.get_xy() 
+	    plt.annotate(f'{height/100:0.00%}', (x + width/2, y + height*1.02), ha='center')
+
+	
+	graph=get_graph()
+	return graph
 
 
 

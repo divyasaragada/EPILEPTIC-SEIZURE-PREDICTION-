@@ -33,7 +33,7 @@
     <p><input placeholder="Your name.." name="name" required></p>
 <br>
     <label ><b>Upload File</b></label><br>
-    <p><input name="filewav" type="file" /></p>
+    <p><input name="filewav" type="file" id="file" accept=".edf"  onchange="return fileValidation()" /></p>
     <br>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -46,5 +46,24 @@
  
 </div>
  </center>
+
+ <script>
+        function fileValidation() {
+            var fileInput = 
+                document.getElementById('file');
+              
+            var filePath = fileInput.value;
+          
+            // Allowing file type
+            var allowedExtensions = 
+/(\.edf)$/i;
+              
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            } 
+        }
+    </script>
 </body>
 </html>

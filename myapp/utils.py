@@ -75,24 +75,31 @@ def get_delta_plot(data):
 
 def get_acc():
 
-	#plt.figure(figsize = (8,7))  
+	plt.figure(figsize = (8,8))  
 
-	models = ['Random Forest','XTrees','Xgboost','CNN']
-	total = [96,96.6,97,95]
-	# Passing the parameters to the bar function
-	g=plt.bar(models, total, width= 0.4, align='center',color='cyan', edgecolor = 'red')
-	
-	plt.xticks(fontsize=16)
-	plt.title("Bar plot representing the accuracy of all the models",pad=20,fontname="Times New Roman",fontsize=22)
-	plt.xlabel('ALGORITHM',fontname="Times New Roman")
-	plt.ylabel('ACCURACY',fontname="Times New Roman")
+	import pandas as pd
+	df_results = pd.DataFrame({'classifier':['Random Forest','Random Forest','XGBoost','XGBoost','Xtrees','Xtrees','CNN','CNN'],
+                           'data_set':['train data ','test data']*4,
+                          'accuracy':[99.98,95.8,99.91,96.63,99.99,97.16,97.21,94.27]})
+                          
+	import seaborn as sns
+	sns.set_style("whitegrid")
+	plt.rcParams.update({'font.size': 13})
+	ax = sns.barplot(x = 'classifier', y = 'accuracy',hue = 'data_set', color= '#88cfff',data = df_results,palette="Paired")
 
+	ax.set_xlabel('model', fontsize = 15)
+	ax.set_ylabel('Accuracy', fontsize = 15)
+	ax.tick_params(labelsize = 15)
 
-	for p in g:
+	#Separate legend from graph
+	plt.legend(bbox_to_anchor = (1.05, 1), loc = 4, borderaxespad = 0., fontsize = 12)
+	for p in ax.patches:
 	    width = p.get_width()
 	    height = p.get_height()
 	    x, y = p.get_xy() 
-	    plt.annotate(f'{height/100:0.00%}', (x + width/2, y + height*1.02), ha='center')
+	    ax.annotate(f'{height:.2f}', (x + width/2, y + height*1.02), ha='center')
+
+	
 
 	
 	graph=get_graph()

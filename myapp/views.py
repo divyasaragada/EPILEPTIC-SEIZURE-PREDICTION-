@@ -383,10 +383,16 @@ def result(req):
 def delete(req):
 
 	try:
+
 		d=user.objects.all()
-		d.delete()
-		messages.success(req,"EXISTING FILES DELETED SUCCESSFULLY..")	
-		return render(req,'myapp/eegstart.html')
+		if d:
+			d.delete()
+			messages.success(req,"EXISTING FILES DELETED SUCCESSFULLY..")	
+			return render(req,'myapp/eegstart.html')
+		else:
+			messages.warning(req,'Files are not deleted!!!.......')
+			return render(req,'myapp/eegstart.html')
+
 
 	except Exception:
 		messages.warning(req,'Files are not deleted!!!.......')

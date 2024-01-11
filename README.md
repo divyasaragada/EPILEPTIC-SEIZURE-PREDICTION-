@@ -1,4 +1,4 @@
-![image](https://github.com/divyasaragada/EPILEPTIC-SEIZURE-PREDICTION-/assets/58907293/6e8da0a4-3a39-41c6-89c4-4428a18ee7d3)Epileptic Seizure prediction system
+Epileptic Seizure prediction system
 Tech stack:
 Python
 Machine and Deep Learning algorithms
